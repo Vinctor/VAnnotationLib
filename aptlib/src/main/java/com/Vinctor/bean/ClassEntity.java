@@ -21,12 +21,14 @@ import javax.lang.model.util.Types;
 public class ClassEntity {
     private WeakReference<TypeElement> elementWeakCache;
     private Name classSimpleName;
-    private String classPackage;
+    private Name classQualifiedName;
+    private String classPackageName;
     private Set<Modifier> modifierSet;
     private String className;
     private String superclass;
     private List<String> interfaces = new ArrayList<>();
     private Map<String, FieldEntity> fields = new HashMap<>();
+    private Map<String, MethodEntity> methods = new HashMap<>();
 
     /**
      * @param elementUtils
@@ -35,10 +37,11 @@ public class ClassEntity {
      */
     public ClassEntity(Elements elementUtils, Types typeUtils, TypeElement element) {
         elementWeakCache = new WeakReference<TypeElement>(element);
-        this.classPackage = elementUtils.getPackageOf(element).getQualifiedName().toString();
+        this.classPackageName = elementUtils.getPackageOf(element).getQualifiedName().toString();
         this.modifierSet = element.getModifiers();
         this.className = element.toString();
         this.classSimpleName = element.getSimpleName();
+        this.classQualifiedName = element.getQualifiedName();
         if ("java.lang.Object".equals(element.getSuperclass().toString()))
             this.superclass = null;
         else
@@ -50,12 +53,46 @@ public class ClassEntity {
     }
 
     public void addFieldEntity(FieldEntity fieldEntity) {
-        String fieldName = fieldEntity.getFeildName();
+        String fieldName = fieldEntity.getElement().toString();
         if (fields.get(fieldName) == null) {
             fields.put(fieldName, fieldEntity);
         }
     }
 
+    public void addMethodEntity(MethodEntity methodEntity) {
+        String methodName = methodEntity.getMethodElement().toString();
+        String returnType = methodEntity.getReturnType();
+        String tag = methodName + returnType;
+        if (methods.get(tag) == null) {
+            methods.put(tag, methodEntity);
+        }
+    }
+
+    public Map<String, FieldEntity> getFields() {
+        return fields;
+    }
+
+    public Map<String, MethodEntity> getMethods() {
+        return methods;
+    }
+
+
+    public String getClassPackageName() {
+        return classPackageName;
+    }
+
+
+    public String getClassSimpleName() {
+        return classSimpleName.toString();
+    }
+
+    public String getClassQualifiedName() {
+        return classQualifiedName.toString();
+    }
+
+    public TypeElement getElement() {
+        return elementWeakCache.get();
+    }
 
     @Override
     public String toString() {
@@ -76,9 +113,9 @@ public class ClassEntity {
         }
         StringBuilder result = new StringBuilder();
         result.append("{\n" +
-                "classPackage:" + classPackage + "\n" +
+                "classPackageName:" + classPackageName + "\n" +
                 "modifierSet:" + modifierSet + "\n" +
-                "className:" + className + "\n" +
+                "classSimpleName:" + className + "\n" +
                 "classSimpleName:" + classSimpleName + "\n" +
                 "superclass:" + superclass + "\n" +
                 fieldString.toString() + "\n" +

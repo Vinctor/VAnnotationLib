@@ -5,8 +5,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Created by Vinctor on 2017/3/12.
+ */
 @Retention(RetentionPolicy.CLASS)
-@Target(ElementType.FIELD)
-public @interface VBind {
-    int value();
+@Target(ElementType.METHOD)
+public @interface VOnClick {
+    int[] value();
 }

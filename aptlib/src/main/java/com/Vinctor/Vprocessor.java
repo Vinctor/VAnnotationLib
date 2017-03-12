@@ -11,7 +11,7 @@ import javax.lang.model.SourceVersion;
 public abstract class Vprocessor extends AbstractProcessor {
 
 
-    EntityHandler entityHandler;
+    protected EntityHandler entityHandler;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
