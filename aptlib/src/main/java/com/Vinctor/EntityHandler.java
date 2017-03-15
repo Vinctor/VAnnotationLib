@@ -62,9 +62,21 @@ public class EntityHandler {
                     handlerField((VariableElement) element);
                 if (element.getKind() == ElementKind.METHOD)
                     handlerMethod((ExecutableElement) element);
+                if (element.getKind() == ElementKind.CLASS) {
+                    handlerClass((TypeElement) element);
+                }
             }
+            return classEntityMap;
         }
-        return classEntityMap;
+    }
+
+    private void handlerClass(TypeElement element) {
+        ClassEntity classEntity = new ClassEntity(elementUtils, typeUtils, element);
+        String className = classEntity.getClassSimpleName();
+
+        if (classEntityMap.get(className) == null) {
+            classEntityMap.put(className, classEntity);
+        }
     }
 
     /**
