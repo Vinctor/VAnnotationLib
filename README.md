@@ -4,7 +4,7 @@
 ##使用
 [example](myProccessor/src/main/java/com/example/Myprocessor.java)
 
-####导入项目下```aptlib```模块
+#### 导入项目下```aptlib```模块
 
 在```aptlib```下已添加依赖库:
 
@@ -12,11 +12,11 @@
 
 ```javapoet```(compile 'com.squareup:javapoet:1.4.0')
 
-####创建你的注解类
+#### 创建你的注解类
 
 继承```Vprocessor```,并添加注解```@AutoService(Processor.class)```
 
-####实现方法
+#### 实现方法
 1.```getSupportedAnnotations```(返回需要处理注解的class数组)
 
 2.```process```(处理注解主要方法)
@@ -24,7 +24,7 @@
 note:主要工具类```EntityHandler```,用户对注解进行包装,其已在父类中进行初始化,直接调用```entityHandler.handlerElement(roundEnv, this)```进行调用,
 返回已经包装完毕的``` Map<String, ClassEntity>```,你可以对此进行进一步进行处理,如代码生成或者其他操作.
 
-####其他
+#### 其他
 1.在```process```方法中调用```VLog.setDebug(true)```打开日志,应该在调用```entityHandler.handlerElement(roundEnv, this)```之前调用
 
 2如果您自己需要自定义一些规则,如:字段不能为```private```或方法不能为```private```或方法不能为```abstract```类型
