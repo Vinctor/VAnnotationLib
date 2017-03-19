@@ -66,8 +66,8 @@ public class EntityHandler {
                     handlerClass((TypeElement) element);
                 }
             }
-            return classEntityMap;
         }
+        return classEntityMap;
     }
 
     private void handlerClass(TypeElement element) {
