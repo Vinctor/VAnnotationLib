@@ -1,5 +1,6 @@
 package com.Vinctor.bean;
 
+import java.lang.annotation.Annotation;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
@@ -26,6 +28,7 @@ public class ClassEntity {
     private Set<Modifier> modifierSet;
     private String className;
     private String superclass;
+    List<? extends AnnotationMirror> annotationMirrors;
     private List<String> interfaces = new ArrayList<>();
     private Map<String, FieldEntity> fields = new HashMap<>();
     private Map<String, MethodEntity> methods = new HashMap<>();
@@ -40,6 +43,7 @@ public class ClassEntity {
         this.classPackageName = elementUtils.getPackageOf(element).getQualifiedName().toString();
         this.modifierSet = element.getModifiers();
         this.className = element.toString();
+        annotationMirrors = element.getAnnotationMirrors();
         this.classSimpleName = element.getSimpleName();
         this.classQualifiedName = element.getQualifiedName();
         if ("java.lang.Object".equals(element.getSuperclass().toString()))
@@ -66,6 +70,10 @@ public class ClassEntity {
         if (methods.get(tag) == null) {
             methods.put(tag, methodEntity);
         }
+    }
+
+    public <T extends Annotation> T getAnnotation(Class<T> clazz) {
+        return elementWeakCache.get().getAnnotation(clazz);
     }
 
     public Map<String, FieldEntity> getFields() {

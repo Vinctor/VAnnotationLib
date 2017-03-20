@@ -1,6 +1,8 @@
 package com.Vinctor.bean;
 
 
+import java.lang.annotation.Annotation;
+
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
@@ -77,6 +79,11 @@ public class FieldEntity implements Entity {
 
     public TypeMirror getTypeMirror() {
         return typeMirror;
+    }
+
+
+    public <T extends Annotation> T getAnnotation(Class<T> clazz) {
+        return element.getAnnotation(clazz);
     }
 
     @Override

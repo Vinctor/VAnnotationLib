@@ -144,8 +144,7 @@ public class EntityHandler {
         }
     }
 
-
-    protected void printNormalMsg(String msg, Element element) {
+    public void printNormalMsg(String msg, Element element) {
         if (VLog.getDebug())
             messager.printMessage(Diagnostic.Kind.NOTE, msg, element);
     }
@@ -155,24 +154,24 @@ public class EntityHandler {
             messager.printMessage(Diagnostic.Kind.NOTE, msg);
     }
 
-    protected void log(String tag, String msg) {
+    public void log(String tag, String msg) {
         if (VLog.getDebug())
             messager.printMessage(Diagnostic.Kind.NOTE, tag + "--->" + msg);
     }
 
-    protected void printErrorMsg(String msg, Element element) {
+    public void printErrorMsg(String msg, Element element) {
         messager.printMessage(Diagnostic.Kind.ERROR, msg, element);
     }
 
-    protected void throwExceptionWithMsg(String msg, Element element) {
+    public void throwExceptionWithMsg(String msg, Element element) {
         messager.printMessage(Diagnostic.Kind.ERROR, msg, element);
     }
 
-    protected void throwExceptionWithMsg(String msg) {
+    public void throwExceptionWithMsg(String msg) {
         throw new RuntimeException(msg);
     }
 
-    protected void printWranningMsg(String msg, Element element) {
+    public void printWranningMsg(String msg, Element element) {
         messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
     }
 }

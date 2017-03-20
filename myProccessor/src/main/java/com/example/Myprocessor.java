@@ -1,5 +1,6 @@
 package com.example;
 
+import com.Vinctor.AnnotationUtils;
 import com.Vinctor.OnRegulaListener;
 import com.Vinctor.VBind;
 import com.Vinctor.VLog;
