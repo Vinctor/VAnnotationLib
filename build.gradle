@@ -35,10 +35,10 @@ allprojects {
 
 //添加
 ext {
-    userOrg = 'vinctorlib'
+    userOrg = 'xcht1209'
     groupId = 'com.vinctor'
     uploadName = 'annotationlib'
-    publishVersion = '1.0.0'
+    publishVersion = '0.0.1'
     desc = 'a easy API to make annotation easy'
     website = 'https://github.com/Vinctor/VAnnotationLib'
     licences = ['Apache-2.0']
