@@ -5,7 +5,7 @@
 [example](myProccessor/src/main/java/com/example/Myprocessor.java)
 
 #### 添加依赖
->compile 'com.vinctor:annotationlib:0.0.1'
+>compile 'com.vinctor:annotationlib:0.0.2'
 #### 创建你的注解类
 
 继承```Vprocessor```,并添加注解```@AutoService(Processor.class)```
