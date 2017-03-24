@@ -174,4 +174,24 @@ public class EntityHandler {
     public void printWranningMsg(String msg, Element element) {
         messager.printMessage(Diagnostic.Kind.WARNING, msg, element);
     }
+
+    public Elements getElementUtils() {
+        return elementUtils;
+    }
+
+    public Types getTypeUtils() {
+        return typeUtils;
+    }
+
+    public Filer getFiler() {
+        return filer;
+    }
+
+    public Messager getMessager() {
+        return messager;
+    }
+
+    public RoundEnvironment getEnv() {
+        return env;
+    }
 }

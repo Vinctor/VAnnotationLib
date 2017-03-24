@@ -38,7 +38,7 @@ ext {
     userOrg = 'xcht1209'
     groupId = 'com.vinctor'
     uploadName = 'annotationlib'
-    publishVersion = '0.0.1'
+    publishVersion = '0.0.2'
     desc = 'a easy API to make annotation easy'
     website = 'https://github.com/Vinctor/VAnnotationLib'
     licences = ['Apache-2.0']
